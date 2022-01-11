@@ -367,7 +367,7 @@ uniqueCharacters("Welcome to the Javascript course")
 
 
 -----------
-[08/01, 22:25] +91 82008 08935: "use strict";
+"use strict";
 function wordPlay(number){
     if(number>50){
         console.log("Range is High");
@@ -446,3 +446,48 @@ if(employee instanceof Employee){
 }
 }
 
+
+
+----++++++++++
+
+ function display(){
+    var name=document.getElementById("sname").value;
+    var courses=document.getElementById("course").value;
+    if(!name){
+        document.getElementById("greet").innerHTML="Name cannot be empty";
+    }else{
+        document.getElementById("greet").innerHTML="Hi,"+name+". You have successfully registered for the "+courses+ " course.";
+    }
+    
+}
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="script.js"></script>
+</head>
+<body>
+    <h1>Elite Coaching Center</h1>
+    
+    <div>
+    
+   <form>
+         <label for="sname">Student Name</label>
+          <input type="text" id="sname" required>
+          <label for="course">Course</label>
+              <select  id="course" name="course" required>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="Oracle">Oracle</option>
+          </select>
+ <p></p>
+  <input type="button" id="submit" value="Register" onclick="display()">
+  </form></div>
+   <div id="greet">
+  </div>
+</body>
+</html>
