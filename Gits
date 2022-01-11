@@ -1,0 +1,362 @@
+[11/01, 08:53] Sushi 🍣: 
+var arrayForStoring = [];
+function addFeedback(){
+    arrayForStoring.push(document.getElementById("feedback").value);
+    document.getElementById("result").innerHTML = "<h2>" + "Feedback Details " + "</h2>"+"Successfully Added Feedback Details!";
+    document.getElementById("feedback").value = "";
+}
+
+function displayFeedback(){
+    var i = 1;
+    document.getElementById("result").innerHTML = "";
+    document.getElementById("result").innerHTML += "<h2>" + "Feedback Details " + "</h2>";
+    for (var element in arrayForStoring) {
+        document.getElementById("result").innerHTML += "Feedback " + i++ + "<br>" + arrayForStoring[element] + "<br>";
+    }
+    arrayForStoring = [];
+}
+[11/01, 08:53] Sushi 🍣: 
+<html>
+    <head>
+    <script src="script.js" type="text/javascript"> </script>
+  </head>
+  <body> 
+    
+    <h2>Feedback for the ART OF LIVING session</h2>
+    <table>
+        <tr>
+            <td>Enter the Feedback:</td>
+            <td>
+                <textarea id = "feedback" name = "textarea"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type = "button" id = "create" value = "Add Feedback"
+                onclick = "addFeedback();">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type = "button" id = "view" value = "View Feedback"
+                onclick = "displayFeedback();">
+            </td>
+        </tr>
+    </table>
+    <div id="result"></div>
+    <script src = "script.js"></script>
+  </body>
+</html>
+[11/01, 08:55] Sushi 🍣: 
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <title>Bill Calculator</title>
+
+        <link rel="stylesheet" href="billcalc.css">
+
+        <script >
+
+        function calculateTotalPrice()
+
+        {
+
+            var a=document.getElementById("price").value;
+
+          var  b=document.getElementById("qty").value;
+
+            document.getElementById("totalprice").innerHTML=a*b;
+
+  return false; 
+
+        }
+
+    </script>
+
+    </head>
+
+   <body>
+
+       <h1>Bill Calculator</h1>
+
+       <form onsubmit="return calculateTotalPrice(); return false;">
+
+       <table>
+
+           <tr>
+
+            <td><lable for="productName">Product Name</lable></td>
+
+               <td><input type="text" id="productName" placeholder="Product Name"  required></td>
+
+           </tr>
+
+           <tr>
+
+               <td><label for="price">Product Price in Rs.</label></td>
+
+               <td><input type="number" id="price" placeholder="Product Price"  required min="1"></td>
+
+           </tr>
+
+           <tr>
+
+               <td><label for="qty">Quantity</label></td>
+
+               <td><input type="number" id="qty" placeholder="Enter quantity"  required></td>
+
+           </tr>
+
+           <tr>
+
+               <td><label for="totalprice">Total Price in Rs.</label></td>
+
+               <td><output id="totalprice" name="totalprice" for="price qty" required></output></td>
+
+           </tr>
+
+           <tr>
+
+               <td colspan="2"><input type="submit" id="submit"></td>
+
+           </tr>
+
+       </table>
+
+       </form>
+
+   </body>
+
+</html>
+
+
+
+
+
+
+
+--------------------
+Redu
+[10/01, 17:57] 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Reducing Interest Loan Estimation</title>
+    <style type="text/css">
+        h2 {
+            text-align: center;
+            color: #FF0000;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        table {
+            text-align: left;
+            background-color: #FFE77A;
+            padding: 10px;
+        }
+
+        thead {
+            text-align: center;
+        }
+
+        #tablemain {
+            margin-left: 35%;
+        }
+
+        #Estimate {
+            background-color: #F1F334;
+            color: #000000;
+            font-size: 15px;
+            height: 35px;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<h2>Reducing Interest Loan Estimation</h2>
+<table id="tablemain">
+    <tbody>
+    <tr>
+        <td>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <label for="principalAmount">Principal Loan Amount (Rs.)</label>
+                    </td>
+                    <td>
+                        <input type="text" id="principalAmount" placeholder="Principal Amount" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="interestRate">Interest Rate (%)</label>
+                    </td>
+                    <td>
+                        <input type="text" id="interestRate" placeholder="Interest Per Annum" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="tenure">Tenure (in months)</label>
+                    </td>
+                    <td>
+                        <input type="text" id="tenure" placeholder="Tenure in Months" required>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td align="left" style="padding: 10px">
+                        <input id="Estimate" type="button" value="Estimate" onclick="EstimateReducingInterestLoan()">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table border="1">
+                <caption><b>Loan Estimation</b></caption>
+                <thead>
+                <tr>
+                    <th>Details</th>
+                    <th>Reducing Interest Loan</th>
+                    <th>Fixed Interest Loan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Total Interest Rs.</td>
+                    <td>
+                        <output id="tInterest"></output>
+                    </td>
+                    <td>
+                        <output id="tInterestFixed"></output>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Total Payment Rs.</td>
+                    <td>
+                        <output id="tPayment"></output>
+                    </td>
+                    <td>
+                        <output id="tPaymentFixed"></output>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Monthly EMI Rs.</td>
+                    <td>
+                        <output id="EMI"></output>
+                    </td>
+                    <td>
+                        <output id="EMIFixed"></output>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="Estimation.js"></script>
+</body>
+</html>
+
+
+
+[10/01, 17:57] 
+
+JSSS
+
+const _principalAmount = document.getElementById("principalAmount");
+const _interestRateYear = document.getElementById("interestRate");
+const _tenureMonth = document.getElementById("tenure");
+
+function getEmiReducing(P, N, R) {
+    return (P * R * (Math.pow((1 + R), N) / (Math.pow((1 + R), N) - 1)));
+}
+
+function EstimateReducingInterestLoan() {
+    calculateEMI();
+    totalPayment();
+    totalInterest();
+    EstimateFixedInterestLoan();
+}
+
+function EstimateFixedInterestLoan() {
+    const principalAmount = Number(_principalAmount.value);
+    const interestRateYear = Number(_interestRateYear.value);
+    const tenureMonth = Number(_tenureMonth.value);
+
+    const totalInterestFixed = principalAmount * interestRateYear * tenureMonth / 1200;
+    const totalPaymentFixed = principalAmount + totalInterestFixed;
+    const emiFixed = totalPaymentFixed / tenureMonth;
+
+    document.getElementById("tInterestFixed").innerHTML = Number(totalInterestFixed).toFixed(2).toString();
+    document.getElementById("tPaymentFixed").innerHTML = Number(totalPaymentFixed).toFixed(2).toString();
+    document.getElementById("EMIFixed").innerHTML = Number(emiFixed).toFixed(2).toString();
+}
+
+function reducingLoan() {
+    const principalAmount = Number(_principalAmount.value);
+    const interestRateYear = Number(_interestRateYear.value);
+    const interestRateMonth = Number(interestRateYear / 1200);
+    const tenureMonth = Number(_tenureMonth.value);
+
+    const emiReducing = getEmiReducing(principalAmount, tenureMonth, interestRateMonth);
+    const totalPaymentReducing = tenureMonth * emiReducing;
+    const totalInterestReducing = totalPaymentReducing - principalAmount;
+
+    return {
+        emiReducing: emiReducing,
+        totalPaymentReducing: totalPaymentReducing,
+        totalInterestReducing: totalInterestReducing
+    };
+}
+
+function calculateEMI() {
+    const emiReducing = reducingLoan().emiReducing;
+    document.getElementById("EMI").innerHTML = Number(emiReducing).toFixed(2).toString();
+}
+
+function totalPayment() {
+    const totalPaymentReducing = reducingLoan().totalPaymentReducing;
+    document.getElementById("tPayment").innerHTML = Number(totalPaymentReducing).toFixed(2).toString();
+}
+
+function totalInterest() {
+    const totalInterestReducing = reducingLoan().totalInterestReducing;
+    document.getElementById("tInterest").innerText = Number(totalInterestReducing).toFixed(2).toString();
+}
+
+
+
+------------------------
+
+
+
+
+"use strict"
+function modifyString(str)
+{
+    let removeWhiteSpace=str.replace(/\s+/g, '');
+    return removeWhiteSpace.toLowerCase();
+}
+
+function uniqueCharacters(str)
+{
+ let s=modifyString(str);
+ let result=new Set(s)
+  result=Array.from(result).join('')
+  return result
+
+}
+uniqueCharacters("Welcome to the Javascript course")
