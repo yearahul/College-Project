@@ -360,3 +360,89 @@ function uniqueCharacters(str)
 
 }
 uniqueCharacters("Welcome to the Javascript course")
+
+
+
+
+
+
+-----------
+[08/01, 22:25] +91 82008 08935: "use strict";
+function wordPlay(number){
+    if(number>50){
+        console.log("Range is High");
+        return "Range is High";
+    }
+    if(number<1){
+        console.log("Not Valid");
+        return "Not Valid";
+    } 
+    var s='';
+    
+    for(let i=1;i<=number;i++){
+        
+        if(i%5===0 && i%3===0){
+            s+= " Jump";
+        }
+        else if(i%3===0){
+            s+= " Tap";
+        }
+        else if(i%5===0){
+            s+= " Clap";
+        }
+        else{
+            s+=" "+i;
+        }
+        
+    }
+
+    console.log(s)
+      return s;
+    
+}
+wordPlay(16)
+[08/01, 22:25] +91 82008 08935: function OrderCake(str) {
+	var kg=parseInt(str.slice(0,4))/1000;
+	var name=str.slice(4,str.length-3)
+	var orderid=str.slice(str.length-3,str.length)
+	var price=Math.round(kg*450)
+	var result="Your order for "+Math.ceil(kg)+" kg "+name+" cake has been taken. You are requested to pay Rs. "+price+" on the order no "+orderid;
+	 
+	console.log(result)
+	return result
+}
+OrderCake("5848ButterBlast485")
+[08/01, 22:25] +91 82008 08935: "use strict"
+class Employee 
+{
+constructor(name,designation,year_of_experience){
+    this.name=name;
+    this.designation=designation;
+    this.year_of_experience=year_of_experience;
+}
+}
+
+function createEmployee(name, designation, year_of_experience)
+{
+    let obj=new Employee(name,designation,year_of_experience)
+    return obj;
+
+}
+function displayEmployee(name,designation,year_of_experience){
+    let obj=createEmployee(name,designation,year_of_experience)
+    if(validateObject(obj)){
+        let currentDate=new Date()
+        let actual_year_of_experience=currentDate.getFullYear()-obj.year_of_experience-2;
+        let result=obj.name+" is serving the position of "+obj.designation+" since "+actual_year_of_experience;
+        console.log(result);
+        return result;
+    }
+}
+displayEmployee("Jerold","Manager",15);
+function validateObject(employee)
+{
+if(employee instanceof Employee){
+    return true;
+}
+}
+
