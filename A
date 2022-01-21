@@ -1,4 +1,0 @@
-$('caption').css({'background-color':'lightblue'})
-$('thead tr').css({'background-color':'lightpink'})
-$('tbody tr:odd').css({'background-color':'lightpink'})
-$('tbody tr:even').css({'background-color':'lightblue'})
