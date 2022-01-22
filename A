@@ -1,0 +1,15 @@
+//WRITE YOUR jQUERY CODE HERE
+$('#btn-id').on("click",function(){
+    var dataURL="https://reqres.in/api/users?page=2"
+$.getJSON(dataURL,function( data ) {
+   
+      // Explore available data in the Developer Tools Console
+    $.each(data["data"],function(index,answer){
+        var id=answer.id
+        var email=answer.email
+         var para = $("<li>").html(id + " -- " + email);
+        para.appendTo('#data-id')
+    })
+      
+});
+});
