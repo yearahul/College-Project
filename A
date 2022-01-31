@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+
+int main()   //DO NOT change the 'main' signature
+{
+      int a;
+    int im=0;
+    cout<<"Enter number of semester:\n";
+    cin>>a;
+    int d[a];
+    for(int i=0;i<a;i++){
+        cout<<"Enter number of subjects in "<<i+1<<" semester:\n";
+        int b;
+        cin>>b;
+        
+        int c[b];
+        for(int j=0;j<b;j++){
+            cin>>c[j];
+            if((c[j]>100)||(c[j]<0)){
+                im++;
+            }
+        }
+        int min=c[0];
+        for(int k=1;k<b;k++){
+            if(min>c[k]){
+                min=c[k];
+            }
+        }
+        d[i]=min;
+        
+    }
+    for(int l1=0;l1<a;l1++){
+        if(im==0){
+           cout<<"Minimum mark in "<<l1+1<<" semester:"<<d[l1]<<"\n"; 
+           
+        }
+        else{
+            cout<<"You have entered invalid mark";
+            break;
+        }
+    }
+    
+    return 0;
+
+}
