@@ -1,140 +1,36 @@
 #include<iostream>
-
 using namespace std;
 
-
-
-class Country {
-
-private:
-
-string countryName;
-
-public:
-
-void setCountryName(string name){
-
- countryName=name;
-
-}
-
-string getCountryName(){
-
-return countryName;
-
- }
-
+class BankAccount{
+    private:
+        double _balance;
+ public:
+     virtual double withdrawal(double amount){
+         
+     }
+     double getBalance(){
+         return _balance;
+     }
+     void setBalance(double balance){
+         _balance = balance;
+     }
 };
 
-
-class City : public virtual Country {
-
-private:
-
- string cityName;
-
-public:
-
-void setCityName(string city){
-
- cityName=city;
-
-}
-
-string getCityName(){
-
- return cityName;
-
-}
-
-
- //Getters and setters for the Variable
-
+class SavingsAccount: public BankAccount{
+ public:
+     double withdrawal(double amount){
+         int result = getBalance()-amount;
+         setBalance(result);
+         return getBalance();
+     }
 };
 
-
-class State : public virtual Country {
-
-private:
-
- string stateName;
-
-public:
-
- //Getters and setters for the Variable
-
-void setStateName(string state){
-
- stateName=state;
-
- }
-
- string getStateName(){
-
- return stateName;
-
-}
-
-};
-
-
-class CountryInfo : public City, public State {
-
-private:
-
-string countryInfo;
-
-public:
-
-void display() {
-
-cout<<"Country Info:"<<endl;
-
-cout<<"Country Name :"<<getCountryName()<<endl;
-
-cout<<"City Name: "<<getCityName()<<endl;
-
- cout<<"State Name: "<<getStateName()<<endl;
-
- 
-
-}
-
-};
-
-
-int main() {
-
-string a;
-
-string b;
-
-string c;
-
-cout<<"Enter the Country Name: "<<endl;
-
-cin>>a;
-
-cout<<"Enter the city Name: "<<endl;
-
-cin>>b;
-
-cout<<"Enter the State Name: "<<endl;
-
-cin>>c;
-
-CountryInfo C;
-
-C.setCountryName(a);
-
-C.setCityName(b);
-
-C.setStateName(c);
-
-C.display();
-
-
-
+int main(){
+ double balance,amount;
+ cin>>balance>>amount;
+ SavingsAccount obj;
+ obj.setBalance(balance);
+ obj.withdrawal(amount);
+ cout <<"Available balance: "<<obj.getBalance()<<endl;
  return 0;
-
 }
