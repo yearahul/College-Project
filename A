@@ -1,85 +1,140 @@
-[01/02, 12:46] Gauri: #include<iostream>
-#include<exception>
-#include <string>
+#include<iostream>
+
 using namespace std;
 
-void elementReplication(){
-    //Implement your code here
-    int n;
-    cout<<"Enter the size of an array"<<endl;
-   
-    cin>>n;
-    int a[n];
-    cout<<"Enter the array elements"<<endl;
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-    int m;
-    cout<<"Enter the position of the element to be replicated"<<endl;
-    cin>>m;
-   
-       if(m>n||m<1){
-           throw runtime_error("Array index is out of range");
-       }
-       
-    for(int i=0;i<n;i++){
-        cout<<a[i]<<" ";
-    }
-     cout<<a[m];  
-   
-   
-}
-int main()
-{
-   
-    try
-    {
-        elementReplication();
-        //Call the function
-    }
-     catch(exception &e)
-     {
-         cerr<<e.what();
-     }
+
+
+class Country {
+
+private:
+
+string countryName;
+
+public:
+
+void setCountryName(string name){
+
+ countryName=name;
+
 }
 
+string getCountryName(){
+
+return countryName;
+
+ }
+
+};
 
 
+class City : public virtual Country {
 
+private:
 
- #include <iostream>
-using namespace std;
+ string cityName;
 
-double eligibility_ForAdmission(int a,int b,int c) 
-{
-    double p = a+b+c;
-  //  string msg="Not eligible for Admission";
-  //  char *q=&msg;
-    //Implement your code here
-    if(a<=60 || b<=60 || c<=60 || p<=180){
-        throw "Not eligible for Admission";
-    }
- return p;
+public:
+
+void setCityName(string city){
+
+ cityName=city;
+
 }
 
-int main()
-{
+string getCityName(){
 
-   try
-   {
-        //Implement your code here
-        int d,e,f;
-        cout<<"Enter the Physics Marks"<<endl;
-        cin>>d;
-        cout<<"Enter the Chemistry Marks"<<endl;
-        cin>>e;
-        cout<<"Enter the Maths Marks"<<endl;
-        cin>>f;
-        double g = eligibility_ForAdmission(d,e,f);
-        cout<<"Total score is "<<g;
-    } catch(const char*msg)
-    {
+ return cityName;
 
-        cerr<<msg<<endl;
-    }
+}
+
+
+ //Getters and setters for the Variable
+
+};
+
+
+class State : public virtual Country {
+
+private:
+
+ string stateName;
+
+public:
+
+ //Getters and setters for the Variable
+
+void setStateName(string state){
+
+ stateName=state;
+
+ }
+
+ string getStateName(){
+
+ return stateName;
+
+}
+
+};
+
+
+class CountryInfo : public City, public State {
+
+private:
+
+string countryInfo;
+
+public:
+
+void display() {
+
+cout<<"Country Info:"<<endl;
+
+cout<<"Country Name :"<<getCountryName()<<endl;
+
+cout<<"City Name: "<<getCityName()<<endl;
+
+ cout<<"State Name: "<<getStateName()<<endl;
+
+ 
+
+}
+
+};
+
+
+int main() {
+
+string a;
+
+string b;
+
+string c;
+
+cout<<"Enter the Country Name: "<<endl;
+
+cin>>a;
+
+cout<<"Enter the city Name: "<<endl;
+
+cin>>b;
+
+cout<<"Enter the State Name: "<<endl;
+
+cin>>c;
+
+CountryInfo C;
+
+C.setCountryName(a);
+
+C.setCityName(b);
+
+C.setStateName(c);
+
+C.display();
+
+
+
+ return 0;
+
 }
