@@ -1,22 +1,47 @@
- #include <iostream>
-#include<string>
+iostream>
 using namespace std;
-int stringLength(const char* str)
-{
-    int a=0;
-   //cout<<str;
-   while(str[a]){
-       a++;
-   }
-    return a;
-}
-int main(){   //DO NOT change the 'main' signature
 
-    //Fill code here
-    string s;
-    cin>>s;
-   const  char * p = s.c_str();
-    int a = stringLength(p);
-    cout<<a;
-    return 0;
+class BankAccount {
+private:
+    double _balance;
+public:
+    // Implement getter and setter 
+    //implement virtual method
+virtual double withdrawal (double amount)
+{
+  return get_balance()-amount ;  
+}
+int get_balance()
+  {
+    return _balance;
+   }
+    void set_balance(int value) 
+    {
+    _balance = value;
+        }    
+};
+
+class SavingsAccount : public BankAccount//Add required code
+{
+    //Implement code here
+  double withdrawal(double amount) 
+  {
+      return (get_balance()-amount);
+  }
+};
+
+int main() {
+     // Implement your code here
+     int balance,amount;
+cout<<"Enter the balance amount"<<endl;
+cin>>balance;
+ BankAccount *myobj;
+ SavingsAccount derobj;
+ myobj=&derobj;
+myobj->set_balance(balance);
+  cout<<"Enter the amount to withdraw"<<endl;
+  cin>>amount;
+ myobj->set_balance( myobj->withdrawal(amount));
+  
+  cout<<"Available Balance:"<<myobj->get_balance();
 }
