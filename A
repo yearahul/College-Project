@@ -1,78 +1,66 @@
  #include <iostream>
-#include <iomanip>
-#include <string>
-
 using namespace std;
-
-class MonthlyExpense {
-public:
-   
-    double household_exp;
-    double medical;
-   
-        
-        void setHouseHoldExpense(double houseExp) {
-           //Implement your code
-           this->household_exp=houseExp;
-        }
-       
-        void setMedicalExpense(double medical) {
+ 
+class Product
+{
+  public:
+ // char calculateShirtSize(int);
+ // int calculatePrice(int);
+    int markedPrice(){
+        //Implement your code
+        return 1000;
+    }
+    int discount(){
           //Implement your code
-          this->medical=medical;
-        }
-
-
-    double totalNovemberExpense() {
-        
-       //Implement your code
-       return (household_exp+medical);
-    }
-
-
-    double totalDecemberExpense() {
-        //Implement your code
-        return (household_exp+medical);
-    }
-
-
-    double totalNovDecExpense() {
-        //Implement your code
-        return (household_exp+medical);
+          return 40;
     }
     
-    MonthlyExpense operator +(const MonthlyExpense b)
-    {
-       //Implement your code
-       MonthlyExpense mi;
-       mi.household_exp = this->household_exp + b.household_exp;
-       mi.medical = this->medical + b.medical;
-       return mi;
-       
+};
+ 
+class Dress : public Product 
+{
+  public:
+    char calculateShirtSize(int chestSize){
+          //Implement your code
+          if(chestSize>=20 && chestSize <=30){
+              return 'S';
+          }
+          else if(chestSize>=31 && chestSize <=40){
+              return 'M';
+          }
+          else if(chestSize>40){
+              return 'L';
+          }
     }
 
 };
+ class Shirt : public Dress  
+ {
+  public:
+    
+     int calculatePrice(int chestSize){
+         int z = markedPrice()-((markedPrice()*discount())/100);
+         if(calculateShirtSize(chestSize)=='M'){
+              return z+500;
+          }
+          else if(calculateShirtSize(chestSize)=='L'){
+              return z+1000;
+          }
+          return z;
+       //Implement your code
+     }
+};
 
-
-int main() {
-    //Implement your code
-    double nh,nm,dh,dm;
-    MonthlyExpense m;
-    MonthlyExpense m1;
-    cout<<"Enter the House hold expense of November :"<<endl;
-    cin>>nh;
-    m.setHouseHoldExpense(nh);
-    cout<<"Enter the Medical expense of November :"<<endl;
-    cin>>nm;
-    m.setMedicalExpense(nm);
-    cout<<"Enter the House hold expense of December:"<<endl;
-    cin>>dh;
-    m1.setHouseHoldExpense(dh);
-    cout<<"Enter the Medical expense of December:"<<endl;
-    cin>>dm;
-    m1.setMedicalExpense(dm);
-    MonthlyExpense m2=m+m1;
-    cout<<"November Expenses : "<<m.totalNovemberExpense()<<endl;
-    cout<<"December Expenses : "<<m1.totalDecemberExpense()<<endl;
-    cout<<"Total Expenses for the month of Nov and Dec : "<<m2.totalNovDecExpense()<<endl;
+// main function
+int main()
+{
+    Dress d;
+    Shirt s;
+    int a;
+    cout<<"Enter the chest size : "<<endl;
+    cin>>a;
+    cout<<"Dress Size : "<<d.calculateShirtSize(a)<<endl;
+    cout<<"Price : "<<s.calculatePrice(a)<<endl;
     return 0;
 }
+[24
