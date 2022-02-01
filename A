@@ -1,66 +1,22 @@
  #include <iostream>
+#include<string>
 using namespace std;
- 
-class Product
+int stringLength(const char* str)
 {
-  public:
- // char calculateShirtSize(int);
- // int calculatePrice(int);
-    int markedPrice(){
-        //Implement your code
-        return 1000;
-    }
-    int discount(){
-          //Implement your code
-          return 40;
-    }
-    
-};
- 
-class Dress : public Product 
-{
-  public:
-    char calculateShirtSize(int chestSize){
-          //Implement your code
-          if(chestSize>=20 && chestSize <=30){
-              return 'S';
-          }
-          else if(chestSize>=31 && chestSize <=40){
-              return 'M';
-          }
-          else if(chestSize>40){
-              return 'L';
-          }
-    }
+    int a=0;
+   //cout<<str;
+   while(str[a]){
+       a++;
+   }
+    return a;
+}
+int main(){   //DO NOT change the 'main' signature
 
-};
- class Shirt : public Dress  
- {
-  public:
-    
-     int calculatePrice(int chestSize){
-         int z = markedPrice()-((markedPrice()*discount())/100);
-         if(calculateShirtSize(chestSize)=='M'){
-              return z+500;
-          }
-          else if(calculateShirtSize(chestSize)=='L'){
-              return z+1000;
-          }
-          return z;
-       //Implement your code
-     }
-};
-
-// main function
-int main()
-{
-    Dress d;
-    Shirt s;
-    int a;
-    cout<<"Enter the chest size : "<<endl;
-    cin>>a;
-    cout<<"Dress Size : "<<d.calculateShirtSize(a)<<endl;
-    cout<<"Price : "<<s.calculatePrice(a)<<endl;
+    //Fill code here
+    string s;
+    cin>>s;
+   const  char * p = s.c_str();
+    int a = stringLength(p);
+    cout<<a;
     return 0;
 }
-[24
