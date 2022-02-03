@@ -1,37 +1,38 @@
-import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+public class Student {
+    private int studentId;
+    private String studentName;
+    private String studentAddress;
+    private String collegeName;
 
-        System.out.println("Enter no of bookings:");
-        int bookings = scanner.nextInt();
+    public Student(int studentId, String studentName, String studentAddress, String collegeName) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.studentAddress = studentAddress;
+        this.collegeName = collegeName;
+    }
 
-        System.out.println("Enter the available tickets:");
-        int availableTickets = scanner.nextInt();
+    public Student(int studentId, String studentName, String studentAddress) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.studentAddress = studentAddress;
+        this.collegeName = "NIT";
+    }
 
-       Ticket ticket = new Ticket();
-       ticket.setAvailableTickets(availableTickets);
+    public int getStudentId() {
+        return studentId;
+    }
 
-       for (int i = 0; i < bookings; ++i) {
-           System.out.println("Enter the ticketid:");
-           int ticketId = scanner.nextInt();
+    public String getStudentName() {
+        return studentName;
+    }
 
-           System.out.println("Enter the price:");
-           int price = scanner.nextInt();
+    public String getStudentAddress() {
+        return studentAddress;
+    }
 
-           System.out.println("Enter the no of tickets:");
-           int tickets = scanner.nextInt();
-
-           ticket.setTicketid(ticketId);
-           ticket.setPrice(price);
-
-           System.out.println("Available tickets: " + ticket.getAvailableTickets());
-
-           int cost = ticket.calculateTicketCost(tickets);
-           System.out.println("Total amount:" + cost);
-           System.out.println("Available ticket after booking:" + ticket.getAvailableTickets());
-       }
+    public String getCollegeName() {
+        return collegeName;
     }
 }
 
@@ -39,43 +40,58 @@ public class Main {
 
 
 
-public class Ticket {
-    private int ticketid;
-    private int price;
-    private static int availableTickets;
 
-    public int getTicketid() {
-        return ticketid;
-    }
 
-    public void setTicketid(int ticketid) {
-        this.ticketid = ticketid;
-    }
 
-    public int getPrice() {
-        return price;
-    }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
-    public static int getAvailableTickets() {
-        return availableTickets;
-    }
 
-    public static void setAvailableTickets(int availableTickets) {
-        if (availableTickets > 0) {
-            Ticket.availableTickets = availableTickets;
+
+  
+import java.util.Scanner;
+
+public class StudentMain {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Students's Id:");
+        int id = scanner.nextInt();
+
+        System.out.println("Enter Students' Name:");
+        String name = scanner.next();
+
+        System.out.println("Enter Students' Address:");
+        String address = scanner.next();
+
+        boolean isFromNIT = false;
+        String collageName = "";
+
+        while (true) {
+            System.out.println("Whether the student is from NIT(Yes/No):");
+            String input = scanner.next();
+
+            if (input.equals("YES") || input.equals("yes")) {
+                isFromNIT = true;
+                break;
+            } else if (input.equals("NO") || input.equals("no")) {
+                System.out.println("Enter the collage name:");
+                collageName = scanner.next();
+
+                break;
+            }
         }
-    }
 
-    public int calculateTicketCost(int bookings) {
-        if (bookings <= availableTickets) {
-            availableTickets -= bookings;
-            return bookings * price;
+        Student student;
+
+        if (isFromNIT) {
+            student = new Student(id, name, address);
         } else {
-            return -1;
+            student = new Student(id, name, address, collageName);
         }
+
+        System.out.println("Student id:" + student.getStudentId());
+        System.out.println("Student name:" + student.getStudentName());
+        System.out.println("Address:" + student.getStudentAddress());
+        System.out.println("Collage name:" + student.getCollegeName());
     }
 }
