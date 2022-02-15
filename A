@@ -1,45 +1,4 @@
-Train management
-main.java//
-import java.util.ArrayList;
-import java.util.Scanner;
- 
- public class Main {
-  public static void main(String[] args) {
-   Scanner s = new Scanner(System.in);
-   // fill your code here
- 
-   System.out.println("Enter the source");
-   String source = s.next();
- 
-   System.out.println("Enter the destination");
-   String destination = s.next();
- 
-   System.out.println("Enter the coach type");
-   String coachType = s.next();
-   s.close();
- 
-   if (coachType.equalsIgnoreCase("AC1")  coachType.equalsIgnoreCase("AC2")  coachType.equalsIgnoreCase("AC3")
-      coachType.equalsIgnoreCase("Sleeper")  coachType.equalsIgnoreCase("Seater")) {
- 
-    TrainManagementSystem tms = new TrainManagementSystem();
-    ArrayList<Train> trainList = tms.viewTrain(coachType, source, destination);
- 
-    if (trainList.isEmpty()) {
-     System.out.println("No trains found");
-     return;
-    }
- 
-    for (Train train : trainList) {
-     System.out.println(train.getTrainNumber() + " " + train.getTrainName());
-    }
-    return;
-   }
-   System.out.println("Invalid Coach Type");
-  }
- }
-
-TrainmanagementSys.java//
-import java.sql.SQLException;
+[15/02, 12:04] Gauri: import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -79,8 +38,94 @@ public class TrainManagementSystem {
      return null;
    }
 }
-Train.java//
-public class Train {
+
+
+
+
+
+[15/02, 12:04] Gauri: import java.io.FileInputStream;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
+
+public class DB {
+
+	private static Connection con = null;
+	private static Properties props = new Properties();
+	
+
+    //ENSURE YOU DON'T CHANGE THE BELOW CODE WHEN YOU SUBMIT
+	public static Connection getConnection() throws ClassNotFoundException, SQLException {
+	    try{
+			
+			FileInputStream fis = null;
+			fis = new FileInputStream("database.properties");
+			props.load(fis);
+			
+			// load the Driver Class
+			Class.forName(props.getProperty("DB_DRIVER_CLASS"));
+
+			// create the connection now
+            con = DriverManager.getConnection(props.getProperty("DB_URL"),props.getProperty("DB_USERNAME"),props.getProperty("DB_PASSWORD"));
+	    }
+	    catch(IOException e){
+	        e.printStackTrace();
+	    }
+		return con;	
+	}
+}
+
+
+
+
+
+
+
+
+[15/02, 12:04] Gauri: import java.util.ArrayList;
+import java.util.Scanner;
+ 
+ public class Main {
+  public static void main(String[] args) {
+   Scanner s = new Scanner(System.in);
+   // fill your code here
+ 
+   System.out.println("Enter the source");
+   String source = s.next();
+ 
+   System.out.println("Enter the destination");
+   String destination = s.next();
+ 
+   System.out.println("Enter the coach type");
+   String coachType = s.next();
+   s.close();
+ 
+   if (coachType.equalsIgnoreCase("AC1") || coachType.equalsIgnoreCase("AC2")|| coachType.equalsIgnoreCase("AC3")
+    ||  coachType.equalsIgnoreCase("Sleeper") || coachType.equalsIgnoreCase("Seater")) {
+ 
+    TrainManagementSystem tms = new TrainManagementSystem();
+    ArrayList<Train> trainList = tms.viewTrain(coachType, source, destination);
+ 
+    if (trainList.isEmpty()) {
+     System.out.println("No trains found");
+     return;
+    }
+ 
+    for (Train train : trainList) {
+     System.out.println(train.getTrainNumber() + " " + train.getTrainName());
+    }
+    return;
+   }
+   System.out.println("Invalid Coach Type");
+  }
+ }
+
+
+
+
+[15/02, 12:04] Gauri: public class Train {
   
   private int trainNumber;
   private String trainName;
@@ -158,7 +203,4 @@ public class Train {
     this.sl = sl;
     this.ss = ss;
   }
-  
-  
-  
 }
