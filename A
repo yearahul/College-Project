@@ -1,164 +1,118 @@
-Train management
-main.java//
-import java.util.ArrayList;
-import java.util.Scanner;
- 
- public class Main {
-  public static void main(String[] args) {
-   Scanner s = new Scanner(System.in);
-   // fill your code here
- 
-   System.out.println("Enter the source");
-   String source = s.next();
- 
-   System.out.println("Enter the destination");
-   String destination = s.next();
- 
-   System.out.println("Enter the coach type");
-   String coachType = s.next();
-   s.close();
- 
-   if (coachType.equalsIgnoreCase("AC1")  coachType.equalsIgnoreCase("AC2")  coachType.equalsIgnoreCase("AC3")
-      coachType.equalsIgnoreCase("Sleeper")  coachType.equalsIgnoreCase("Seater")) {
- 
-    TrainManagementSystem tms = new TrainManagementSystem();
-    ArrayList<Train> trainList = tms.viewTrain(coachType, source, destination);
- 
-    if (trainList.isEmpty()) {
-     System.out.println("No trains found");
-     return;
-    }
- 
-    for (Train train : trainList) {
-     System.out.println(train.getTrainNumber() + " " + train.getTrainName());
-    }
-    return;
-   }
-   System.out.println("Invalid Coach Type");
+SELECTION MANAGEMENT
+
+main.java/////
+
+import java.util.*;
+
+public class Main {
+ public static void main(String[] args) {
+
+  // fill your code here
+
+  Scanner s = new Scanner(System.in);
+
+  System.out.println("Enter the minimum height");
+  double minHeight = s.nextDouble();
+
+  System.out.println("Enter the maximum weight");
+  double maxWeight = s.nextDouble();
+  s.close();
+
+  PlayerSelectionSystem pss = new PlayerSelectionSystem();
+
+  List<String> playerList = pss.playersBasedOnHeightWeight(minHeight, maxWeight);
+
+  if (playerList.isEmpty()) {
+   System.out.printf("No players are with minimum height of %.1f and maximum weight of %.1f", minHeight,
+     maxWeight);
+   return;
+  }
+
+  for (String player : playerList) {
+   System.out.println(player);
   }
  }
+}
 
-TrainmanagementSys.java//
-import java.sql.SQLException;
+PlayerSelection.java///
+
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-public class TrainManagementSystem {
-      public ArrayList <Train> viewTrain (String coachType, String source, String destination){
-        
-        // Fill your code here  
-        ArrayList<Train> trainList = new ArrayList<Train>();
-        try {
-            Connection con = DB.getConnection();
-            Statement statement = con.createStatement();
-            String query = "SELECT * FROM train WHERE source = '" + source + "' AND destination = '" + destination+ "' AND " + coachType + " != 0 ORDER BY train_number";
-            ResultSet result = statement.executeQuery(query);
-            while(result.next()){
-                int train_number = result.getInt(1);
-                String train_name = result.getString(2);
-                String sc = result.getString(3);
-                   String ds = result.getString(4);
-                   int ac1 = result.getInt(5);
-                   int ac2 = result.getInt(6);
-                    int ac3 = result.getInt(7);
-                int sleeper = result.getInt(8);
-                int seater = result.getInt(9);
-                trainList.add(new Train(train_number,train_name,sc,ds,ac1,ac2,ac3,sleeper,seater));
-            }
-            statement.close();
-            con.close();
-            return trainList;
-        } 
-        catch(SQLException e) {
-            e.printStackTrace();
-        }
-        catch(ClassNotFoundException e){
-            e.printStackTrace();
-            }
-     return null;
+import java.util.List;
+
+public class PlayerSelectionSystem {
+
+ public List<String> playersBasedOnHeightWeight(double minHeight, double maxWeight) {
+
+  // Fill your code here
+
+  List<String> playerList = new ArrayList<String>();
+
+  try {
+   Connection con = DB.getConnection();
+
+   String query = "SELECT * FROM player WHERE height >= " + minHeight + " AND weight <= " + maxWeight
+     + " ORDER BY playerName";
+
+   Statement st = con.createStatement();
+   ResultSet rs = st.executeQuery(query);
+
+   while (rs.next()) {
+    playerList.add(rs.getString("playerName"));
    }
+            
+            st.close();
+   con.close();
+
+  } catch (ClassNotFoundException | SQLException e) {
+   e.printStackTrace();
+  }
+
+  return playerList;
+ }
 }
-Train.java//
-public class Train {
-  
-  private int trainNumber;
-  private String trainName;
-  private String source;
-  private String destination;
-  private int ac1;
-  private int ac2;
-  private int ac3;
-  private int sl;
-  private int ss;
-  public int getTrainNumber() {
-    return trainNumber;
+
+Player.java////
+
+public class Player {
+private int playerId;
+  private String playerName;
+  private double height;
+  private double weight;
+  public int getPlayerId() {
+    return playerId;
   }
-  public void setTrainNumber(int trainNumber) {
-    this.trainNumber = trainNumber;
+  public void setPlayerId(int playerId) {
+    this.playerId = playerId;
   }
-  public String getTrainName() {
-    return trainName;
+  public String getPlayerName() {
+    return playerName;
   }
-  public void setTrainName(String trainName) {
-    this.trainName = trainName;
+  public void setPlayerName(String playerName) {
+    this.playerName = playerName;
   }
-  public String getSource() {
-    return source;
+  public double getHeight() {
+    return height;
   }
-  public void setSource(String source) {
-    this.source = source;
+  public void setHeight(double height) {
+    this.height = height;
   }
-  public String getDestination() {
-    return destination;
+  public double getWeight() {
+    return weight;
   }
-  public void setDestination(String destination) {
-    this.destination = destination;
+  public void setWeight(double weight) {
+    this.weight = weight;
   }
-  public int getAc1() {
-    return ac1;
-  }
-  public void setAc1(int ac1) {
-    this.ac1 = ac1;
-  }
-  public int getAc2() {
-    return ac2;
-  }
-  public void setAc2(int ac2) {
-    this.ac2 = ac2;
-  }
-  public int getAc3() {
-    return ac3;
-  }
-  public void setAc3(int ac3) {
-    this.ac3 = ac3;
-  }
-  public int getSl() {
-    return sl;
-  }
-  public void setSl(int sl) {
-    this.sl = sl;
-  }
-  public int getSs() {
-    return ss;
-  }
-  public void setSs(int ss) {
-    this.ss = ss;
-  }
-  public Train(int trainNumber, String trainName, String source, String destination, int ac1, int ac2, int ac3,
-      int sl, int ss) {
+  public Player(int playerId, String playerName, double height, double weight) {
     super();
-    this.trainNumber = trainNumber;
-    this.trainName = trainName;
-    this.source = source;
-    this.destination = destination;
-    this.ac1 = ac1;
-    this.ac2 = ac2;
-    this.ac3 = ac3;
-    this.sl = sl;
-    this.ss = ss;
+    this.playerId = playerId;
+    this.playerName = playerName;
+    this.height = height;
+    this.weight = weight;
   }
-  
   
   
 }
