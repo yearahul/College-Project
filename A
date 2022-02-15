@@ -30,3 +30,61 @@ public class UniqueWords {
         scanner.close();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+mimport java.util.*;
+import java.sql.*;
+public class FlightManagementSystem{
+//flight management system//    
+public boolean addFlight(Flight flightObj) {
+        try {
+            DB db = new DB();
+            Connection con = db.getConnection();
+            PreparedStatement pst = con.prepareStatement("insert into flight values(?,?,?,?,?)");
+            pst.setInt(1,flightObj.getFlightId());
+            pst.setString(2,flightObj.getSource());
+            pst.setString(3,flightObj.getDestination());
+            pst.setInt(4,flightObj.getNoOfSeats());
+            pst.setDouble(5,flightObj.getFlightFare());
+            int i = pst.executeUpdate();
+            con.close();
+            if(i>0)
+                return true;
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        return false;
+        }
+            
+        }
+// main.java//
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int flightID = sc.nextInt();
+        String source = sc.next();
+        String destination = sc.next();
+        int noOfSeats = sc.nextInt();
+        double flightFare = sc.nextDouble();
+        Flight f = new Flight(flightID,source,destination,noOfSeats,flightFare);
+        FlightManagementSystem fms = new FlightManagementSystem();
+        if (fms.addFlight(f))
+        System.out.println("Flight details added successfully");
+        else
+        System.out.println("Addition not done");
+    }
+
+}  
